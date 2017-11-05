@@ -23,7 +23,7 @@ import java.util.Random;
  * import java.util.Iterator;
  * import java.util.Random;
  * Moreover, you need to provide a detailed estimate for how often on average ANY iterator's next() method gets called
- * (depending on the value of L) when addition(Iterator<NodeList<Integer>> iterator) gets called.
+ * (depending on the value of L) when addition(Iterator&lt;NodeList&lt;Integer&gt;&gt; iterator) gets called.
  */
 public class Project2 {
 
@@ -33,6 +33,8 @@ public class Project2 {
         for (int i = 0; i < len; i++) {
             nodeList.append(new Random().nextInt(10));
         }
+        System.out.print("Generated Number: ");
+        print(nodeList);
         return nodeList;
     }
 
@@ -48,46 +50,39 @@ public class Project2 {
         System.out.println();
     }
 
-    public static void main(String[] args) {
-        int L = 30;
+    public static void main(final String[] args) {
+        final int L = 30;
 
-        final NodeList<Integer> n1 = generateNumber(L);
-        final NodeList<Integer> n2 = generateNumber(L);
+        final NodeList<Integer> n1 = generateNumber(L); // (head 1st) e.g. 3457
+        final NodeList<Integer> n2 = generateNumber(L); // (head 1st) e.g. 682
 
         final Project2 project = new Project2();
 
-        // Print n1 (head 1st) e.g. 3457
-        print(n1);
-
-        // Print n2 (head 1st) e.g. 682
-        print(n2);
-
-        // Print n1+n2, e.g. 4139
-        print(project.addition(n1, n2));
+        print(project.addition(n1, n2)); //  n1+n2, e.g. 4139
 
         final NodeList<NodeList<Integer>> listOfLists = new NodeList<>();
         for (int i = 0; i < L; i++) {
             listOfLists.append(generateNumber(L));
         }
-        project.save(project.addition(listOfLists.iterator()), "result.txt");
-        print(project.load("result.txt"));
+        project.save(project.addition(listOfLists.iterator()), "result.bin");
+        print(project.load("result.bin"));
     }
 
     /**
      * Add two very long numbers
      *
-     * @param nodeList1 NodeList<Integer>
-     * @param nodeList2 NodeList<Integer>
+     * @param nodeList1 NodeList&lt;Integer&gt;
+     * @param nodeList2 NodeList&lt;Integer&gt;
      * @return nodeList representing the sum (add) of nodeList1 and nodeList2, without leading '0'
      */
     public NodeList<Integer> addition(NodeList<Integer> nodeList1, NodeList<Integer> nodeList2) {
-        return null;
+        return new NodeList<>();
     }
 
     /**
      * Add very long numbers
      *
-     * @param iterator Iterator<NodeList<Integer>>
+     * @param iterator NodeList&lt;Integer&gt;
      * @return nodeList representing the sum (add) of all very long numbers, without leading '0'
      */
     public NodeList<Integer> addition(Iterator<NodeList<Integer>> iterator) {
@@ -97,7 +92,7 @@ public class Project2 {
     /**
      * Saves a very large number as a file
      *
-     * @param nodeList NodeList<Integer>
+     * @param nodeList NodeList&lt;Integer&gt;
      * @param fileName String
      */
     public void save(NodeList<Integer> nodeList, String fileName) { }
@@ -106,9 +101,9 @@ public class Project2 {
      * Loads a very large number from a file
      *
      * @param fileName String
-     * @return NodeList<Integer>
+     * @return NodeList&lt;Integer&gt;
      */
     public NodeList<Integer> load(final String fileName) {
-        return null;
+        return new NodeList<>();
     }
 }
