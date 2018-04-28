@@ -1,10 +1,21 @@
 package edu.gcccd.csis;
 
+/**
+ * A node, to be used in data structures like a simple linked list
+ *
+ * @param <E> date content type
+ */
 final class Node<E> {
     private static long counter = 0;   // for instrumentation only
     private E element;
     private Node<E> next;
 
+    /**
+     * There is no setter method implemented, to set an element.
+     * Instead, the node constructor accepts an element.
+     *
+     * @param element the data content that is stored in this node.
+     */
     Node(final E element) {
         this.element = element;
     }

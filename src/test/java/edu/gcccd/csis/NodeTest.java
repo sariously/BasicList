@@ -75,7 +75,7 @@ public class NodeTest {
         studentList.append(s);
         studentList.append(t);
         studentList.append(u);
-        Iterator<Student> iter = studentList.iterator();
+        final Iterator<Student> iter = studentList.iterator();
         while (iter.hasNext()) {
             System.out.println(iter.next());
         }
