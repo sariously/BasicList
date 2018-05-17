@@ -149,7 +149,25 @@ public class MyProject2 implements Project2 {
 
     @Override
     public NodeList<Integer> load(String fileName) {
-        return null;
+        NodeList<Integer> result = new NodeList<>();
+
+        try
+        {
+            final FileInputStream fis = new FileInputStream(fileName);
+            final DataInputStream dis = new DataInputStream(fis);
+
+            while(dis.available() > 0)
+            {
+                result.append(dis.read());
+            }
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return result;
+
     }
 
 
