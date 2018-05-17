@@ -8,6 +8,7 @@ public class MyProject2 implements Project2 {
     NodeList<Integer> outputNodeList; // declare outside of method since method is recursive
     /**
      * Reverse the elements in a NodeList of Integers
+     * This method gets recursively called n times, where n is the number of Nodes in the NodeList
      *
      * @param input NodeList<Integer>
      * @return outputNodelist NodeList<Integer> -- the reverse of inputNodeList
@@ -30,7 +31,7 @@ public class MyProject2 implements Project2 {
 
     /**
      * Add two very long numbers
-     *
+     * This method gets called n times where n is the length of the longer of the two NodeList arguments
      * @param nodeList1 NodeList<Integer>;
      * @param nodeList2 NodeList<Integer>;
      * @return nodeList representing the sum (add) of nodeList1 and nodeList2, without leading '0'
@@ -108,6 +109,10 @@ public class MyProject2 implements Project2 {
 
     /**
      * Add very long numbers
+     * This while loop in this method will be iterated through n - 1 times,
+     * where n is the number of NodeLists in the iterator.
+     * The reason why it is called n - 1 times is because two NodeLists are passed to
+     * addition(nodeList1, nodeList2) at a time.
      *
      * @param iterator NodeList<Integer>;
      * @return nodeList representing the sum (add) of all very long numbers, without leading '0'
