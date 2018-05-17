@@ -33,14 +33,11 @@ public class MyProject2 implements Project2 {
     /**
      * Add two very long numbers
      *
-     * The iterator's next method may be called up to (n + (n - m)) times where n is the length of the longer
-     * of the two NodeList arguments and m is the length of the shorter NodeList arguments.
-     * Not only must the next method be called n times to sum up each pair of digits, but next may also be called
-     * up to (n - m) times to remove all leading zeroes.
-     *
-     * However, on average, the next method may be called closer to n times, where the n is the length of
-     * the longer of the two NodeList arguments.
-     *
+     * The iterator's next method may be called n*3 times, where n is the length of the longest
+     * NodeList argument. This is because the shortest of the two NodeLists will be padded with zeroes
+     * until it is the same length of the longest NodeList. Then the next method is called on both
+     * NodeLists to add each next set of Nodes. Finally, next is called on the resulting
+     * NodeList to remove leading zeroes.
      *
      *
      * @param nodeList1 NodeList<Integer>;
@@ -50,6 +47,7 @@ public class MyProject2 implements Project2 {
     @Override
     public NodeList<Integer> addition(NodeList<Integer> nodeList1, NodeList<Integer> nodeList2) {
         NodeList<Integer> result = new NodeList<>();
+
         if (nodeList1.getLength() == 0)
         {
             result = nodeList2;
@@ -85,6 +83,7 @@ public class MyProject2 implements Project2 {
             int remainder;
             int BASE = 10;
             while (nodeIterator1.hasNext()) {
+
                 int digit = carryOver + nodeIterator1.next() + nodeIterator2.next();
 
                 // Can't put digits larger than the base in an element of the NodeList

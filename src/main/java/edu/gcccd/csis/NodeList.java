@@ -76,7 +76,9 @@ public final class NodeList<E> implements Iterable<E> {
     // implement Iterable<E> interface
     @Override
     public Iterator<E> iterator() {
+
         return new Iterator<E>() {
+            private int count = 0;
             private Node<E> node = head;
 
             @Override
@@ -86,6 +88,8 @@ public final class NodeList<E> implements Iterable<E> {
 
             @Override
             public E next() {
+                count++;
+
                 E obj = node.getElement();
                 node = node.getNext();
                 return obj;
