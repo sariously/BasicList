@@ -5,7 +5,7 @@ import java.io.*;
 
 public class MyProject2 implements Project2 {
 
-
+    NodeList<Integer> outputNodeList;
     /**
      * Reverse the elements in a NodeList of Integers
      *
@@ -14,7 +14,7 @@ public class MyProject2 implements Project2 {
      */
     public NodeList<Integer> reverse(Iterator<Integer> input)
     {
-        NodeList<Integer> outputNodeList = new NodeList<>();
+        outputNodeList = new NodeList<>();
 
         while(input.hasNext())
         {
@@ -49,10 +49,12 @@ public class MyProject2 implements Project2 {
             if (nodeList1.getLength() < nodeList2.getLength())
             {
                 nodeList1.append(0);
+
             }
             else
             {
                 nodeList2.append(0);
+
             }
         }
 
