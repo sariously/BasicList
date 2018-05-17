@@ -187,7 +187,9 @@ public class MyProject2 implements Project2 {
         for (int i = 0; i < L; i++) {
             listOfLists.append(Project2.generateNumber(L));
         }
-        p.save(p.addition(listOfLists.iterator()), "result.bin");
+        final NodeList<Integer> result = p.addition(listOfLists.iterator());
+        p.save(result, "result.bin");
+        System.out.println("File contents:");
         Project2.print(p.load("result.bin"));
     }
 }

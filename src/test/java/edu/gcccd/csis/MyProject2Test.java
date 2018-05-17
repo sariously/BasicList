@@ -81,7 +81,36 @@ public class MyProject2Test {
         assertEquals(new BigInteger("" + TEST), genBigInteger(result)); // 12345679 * 100 = 1234567900
     }
 
-    
+    @Test
+
+    public void testSaveAndLoad()
+    {
+
+        final int L = 30;
+
+        final NodeList<Integer> n1 = Project2.generateNumber(L); // (head 1st) e.g. 3457
+        final NodeList<Integer> n2 = Project2.generateNumber(L); // (head 1st) e.g. 682
+
+        final Project2 p = new MyProject2();
+
+        Project2.print(p.addition(n1, n2)); //  n1+n2, e.g. 4139
+
+        final NodeList<NodeList<Integer>> listOfLists = new NodeList<>();
+        for (int i = 0; i < L; i++) {
+            listOfLists.append(Project2.generateNumber(L));
+        }
+        final NodeList<Integer> in = p.addition(listOfLists.iterator());
+        p.save(in, "result.bin");
+        System.out.println("File contents:");
+
+        final NodeList<Integer> out = p.load("result.bin");
+
+        Project2.print(out);
+
+        assertEquals(genBigInteger(in), genBigInteger(out) );
+    }
+
+
 
 
 }
