@@ -33,10 +33,13 @@ public class MyProject2 implements Project2 {
     /**
      * Add two very long numbers
      *
-     * The iterator's next method may be called (n + (n - m)) times where n is the length of the longer
+     * The iterator's next method may be called up to (n + (n - m)) times where n is the length of the longer
      * of the two NodeList arguments and m is the length of the shorter NodeList arguments.
      * Not only must the next method be called n times to sum up each pair of digits, but next may also be called
      * up to (n - m) times to remove all leading zeroes.
+     *
+     * However, on average, the next method may be called closer to n times, where the n is the length of
+     * the longer of the two NodeList arguments.
      *
      *
      *
