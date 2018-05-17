@@ -1,6 +1,7 @@
 package edu.gcccd.csis;
 
 import java.util.Iterator;
+import java.io.*;
 
 public class MyProject2 implements Project2 {
 
@@ -125,6 +126,24 @@ public class MyProject2 implements Project2 {
 
     @Override
     public void save(NodeList<Integer> nodeList, String fileName) {
+        try
+        {
+            final FileOutputStream fos = new FileOutputStream(fileName);
+            final DataOutputStream dos = new DataOutputStream(fos);
+
+            for ( Integer element : nodeList)
+            {
+                dos.write(element);
+
+            }
+
+            dos.close();
+        }
+
+        catch(IOException e)
+        {
+          e.printStackTrace();
+        }
 
     }
 
