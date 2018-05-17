@@ -11,7 +11,13 @@ import java.math.BigInteger;
 
 public class MyProject2Test {
 
-
+    /**
+     * Generates a a BigInteger from a NodeList
+     * for testing with BigInteger add methods
+     *
+     * @param nodeList NodeList<Integer>
+     * @return BigInteger
+     */
 
    public static BigInteger genBigInteger(final NodeList<Integer> nodeList)
    {
@@ -29,10 +35,19 @@ public class MyProject2Test {
 
    }
 
+
+    /**
+     * Generates a a NodeList from a String by iterating through
+     * each character in the String (as an array of characters)
+     * and appending each character's numeric value to the NodeList
+     *
+     * @param s String
+     * @return nodeList NodeList<Integer>
+     */
    public static NodeList<Integer> genNodeList(String s)
    {
        final NodeList<Integer> nodeList = new NodeList<>();
-       for (final char c : s. toCharArray()) {
+       for (final char c : s.toCharArray()) {
            nodeList.append(Character.getNumericValue(c));
        }
        return nodeList;
