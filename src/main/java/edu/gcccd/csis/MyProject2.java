@@ -5,7 +5,7 @@ import java.io.*;
 
 public class MyProject2 implements Project2 {
 
-    NodeList<Integer> outputNodeList;
+    NodeList<Integer> outputNodeList; // declare outside of method since method is recursive
     /**
      * Reverse the elements in a NodeList of Integers
      *
