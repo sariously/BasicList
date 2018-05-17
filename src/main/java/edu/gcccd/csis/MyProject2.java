@@ -8,7 +8,8 @@ public class MyProject2 implements Project2 {
     NodeList<Integer> outputNodeList; // declare outside of method since method is recursive
     /**
      * Reverse the elements in a NodeList of Integers
-     * This method gets recursively called n times, where n is the number of Nodes in the NodeList
+     *
+     * The next method gets called n times, where n is the number of Nodes in the NodeList
      *
      * @param input NodeList<Integer>
      * @return outputNodelist NodeList<Integer> -- the reverse of inputNodeList
@@ -31,7 +32,14 @@ public class MyProject2 implements Project2 {
 
     /**
      * Add two very long numbers
-     * This method gets called n times where n is the length of the longer of the two NodeList arguments
+     *
+     * The iterator's next method may be called (n + (n - m)) times where n is the length of the longer
+     * of the two NodeList arguments and m is the length of the shorter NodeList arguments.
+     * Not only must the next method be called n times to sum up each pair of digits, but next may also be called
+     * up to (n - m) times to remove all leading zeroes.
+     *
+     *
+     *
      * @param nodeList1 NodeList<Integer>;
      * @param nodeList2 NodeList<Integer>;
      * @return nodeList representing the sum (add) of nodeList1 and nodeList2, without leading '0'
@@ -39,66 +47,69 @@ public class MyProject2 implements Project2 {
     @Override
     public NodeList<Integer> addition(NodeList<Integer> nodeList1, NodeList<Integer> nodeList2) {
         NodeList<Integer> result = new NodeList<>();
-
-        // Reverse the elements to make padding with 0s easier
-        nodeList1 = reverse(nodeList1.iterator());
-        nodeList2 = reverse(nodeList2.iterator());
-
-        // Pad with zeroes so that the NodeLists are the same length
-        while(nodeList1.getLength() != nodeList2.getLength())
+        if (nodeList1.getLength() == 0)
         {
-            if (nodeList1.getLength() < nodeList2.getLength())
-            {
-                nodeList1.append(0);
-
-            }
-            else
-            {
-                nodeList2.append(0);
-
-            }
+            result = nodeList2;
         }
 
-        // Sum the NodeLists
-        Iterator<Integer> nodeIterator1 = nodeList1.iterator();
-        Iterator<Integer> nodeIterator2 = nodeList2.iterator();
-
-        int carryOver = 0;
-        int remainder;
-        int BASE = 10;
-        while(nodeIterator1.hasNext())
+        else if (nodeList2.getLength() == 0)
         {
-            int digit = carryOver + nodeIterator1.next() + nodeIterator2.next();
-
-            // Can't put digits larger than the base in an element of the NodeList
-            if(digit > (BASE - 1))
-            {
-                remainder = digit % BASE;
-                carryOver = digit / BASE;
-            }
-            else
-            {
-                remainder = digit;
-                carryOver = 0;
-            }
-
-
-            result.append(remainder);
+            result = nodeList1;
         }
 
-        // appends the last carryOver if we had a digit larger than the base during the last iteration
-        if (carryOver != 0)
-        {
-            result.append(carryOver);
-        }
+        else {
 
-        // Reverse the result NodeList to the correct order
-        result = reverse(result.iterator());
+            // Reverse the elements to make padding with 0s easier
+            nodeList1 = reverse(nodeList1.iterator());
+            nodeList2 = reverse(nodeList2.iterator());
 
-        // Take out the padding (leading zeroes)
-        if (result.getLength() > 1) {
-            while (result.iterator().next() == 0 && result.getLength() > 1) {
-                result.remove(0);
+            // Pad with zeroes so that the NodeLists are the same length
+            while (nodeList1.getLength() != nodeList2.getLength()) {
+                if (nodeList1.getLength() < nodeList2.getLength()) {
+                    nodeList1.append(0);
+
+                } else {
+                    nodeList2.append(0);
+
+                }
+            }
+
+            // Sum the NodeLists
+            Iterator<Integer> nodeIterator1 = nodeList1.iterator();
+            Iterator<Integer> nodeIterator2 = nodeList2.iterator();
+
+            int carryOver = 0;
+            int remainder;
+            int BASE = 10;
+            while (nodeIterator1.hasNext()) {
+                int digit = carryOver + nodeIterator1.next() + nodeIterator2.next();
+
+                // Can't put digits larger than the base in an element of the NodeList
+                if (digit > (BASE - 1)) {
+                    remainder = digit % BASE;
+                    carryOver = digit / BASE;
+                } else {
+                    remainder = digit;
+                    carryOver = 0;
+                }
+
+
+                result.append(remainder);
+            }
+
+            // appends the last carryOver if we had a digit larger than the base during the last iteration
+            if (carryOver != 0) {
+                result.append(carryOver);
+            }
+
+            // Reverse the result NodeList to the correct order
+            result = reverse(result.iterator());
+
+            // Take out the padding (leading zeroes)
+            if (result.getLength() > 1) {
+                while (result.iterator().next() == 0 && result.getLength() > 1) {
+                    result.remove(0);
+                }
             }
         }
 
