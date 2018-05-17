@@ -82,6 +82,59 @@ public class MyProject2Test {
     }
 
     @Test
+    public void testAdditionCornerCases()
+    {
+        // What if there are leading zeroes in the represented Integer?
+        NodeList<Integer> n1 = genNodeList("014");
+        NodeList<Integer> n2 = genNodeList("900");
+
+        NodeList<Integer> n3 = new MyProject2().addition(n1, n2);
+        assertEquals(new BigInteger("914"), genBigInteger(n3));
+
+        // How about if both lists represent 0?
+        // Should sum to 0
+        n1 = genNodeList("0");
+        n2 = genNodeList("0");
+
+        n3 = new MyProject2().addition(n1, n2);
+        assertEquals(new BigInteger("0"), genBigInteger(n3));
+
+        // What if there are just a bunch of zeroes?
+        // Should still sum to zero
+
+        n1 = genNodeList("000000000");
+        n2 = genNodeList("0000000000");
+
+         n3 = new MyProject2().addition(n1, n2);
+        assertEquals(new BigInteger("0"), genBigInteger(n3));
+
+
+        // What happens if both NodeLists are empty?
+        // Should not create an error -- Length of sum NodeList should be zero
+
+        n1 = new NodeList<>();
+        n2 = new NodeList<>();
+        n3 = new MyProject2().addition(n1, n2);
+        assertEquals(n3.getLength(), 0);
+
+        // Adding one NodeList to an empty NodeList should give the original NodeList
+        // Regardless of which NodeList is empty (first or second)
+        n2 = genNodeList("0");
+        n3 = new MyProject2().addition(n1, n2);
+        assertEquals(new BigInteger("0"), genBigInteger(n3));
+
+        n1 = n2;
+        n2 = new NodeList<>();
+        n3 = new MyProject2().addition(n1, n2);
+        assertEquals(new BigInteger("0"), genBigInteger(n3));
+
+
+
+
+
+    }
+
+    @Test
 
     public void testSaveAndLoad()
     {
